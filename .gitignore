@@ -9,6 +9,10 @@ dist
 # Node dependencies
 node_modules
 
+# FrontendMentor guide
+design
+style-guide.md
+
 # Logs
 logs
 *.log
