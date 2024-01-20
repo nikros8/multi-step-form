@@ -7,3 +7,73 @@ body {
   margin: 0;
   padding: 0;
 }
+
+button {
+  cursor: pointer;
+  width: 122px;
+  height: 48px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: #1f2e55;
+}
+
+button:hover {
+  background-color: #0f4a8a;
+}
+
+input {
+  color: #385b76;
+  font-weight: 500;
+  font-size: 16px;
+  text-indent: 13px;
+  width: 100%;
+  height: 48px;
+  border: 1px solid #dadadc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  outline: none;
+  padding-right: 0;
+}
+
+input:hover {
+  border-color: #504d9a;
+}
+
+input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  text-indent: 13px;
+  color: #bdbec6;
+}
+input::-moz-placeholder {
+  /* Firefox 19+ */
+  text-indent: 13px;
+  color: #bdbec6;
+}
+input:-ms-input-placeholder {
+  /* IE 10+ */
+  text-indent: 13px;
+  color: #bdbec6;
+}
+input:-moz-placeholder {
+  /* Firefox 18- */
+  text-indent: 13px;
+  color: #bdbec6;
+}
+
+.base-form-step-container {
+  max-width: 450px;
+  width: 100%;
+  margin-top: 40px;
+}
+.base-form-step-container .title {
+  color: #1e345e;
+  font-size: 32px;
+  font-weight: 700;
+}
+.base-form-step-container .hint {
+  color: #a1a2a9;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 12px;
+}
