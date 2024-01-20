@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <BaseFormHandler />
+  <h1>STEP 1</h1>
 </template>
 
 <style scoped></style>
