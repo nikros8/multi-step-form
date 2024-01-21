@@ -19,7 +19,9 @@ import { baseFormStepData } from "@/store/store"
         <label for="tel">Phone Number</label><br />
         <input type="tel" id="tel" placeholder="e.g. +1 234 567 890" />
       </div>
-      <button @click="baseFormStepData.functions.nextStep">Next Step</button>
+      <button @click="baseFormStepData.functions.nextStep" class="button-next-step">
+        Next Step
+      </button>
     </div>
   </div>
 </template>

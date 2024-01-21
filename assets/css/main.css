@@ -10,18 +10,29 @@ body {
 
 button {
   cursor: pointer;
-  width: 122px;
-  height: 48px;
   font-size: 15px;
   letter-spacing: 0.8px;
   border: none;
-  border-radius: 10px;
-  color: white;
-  background-color: #1f2e55;
 }
 
-button:hover {
+.button-next-step {
+  width: 123px;
+  height: 48px;
+  border-radius: 8px;
+  color: #d4eafa;
+  background-color: #1f2e55;
+}
+.button-next-step:hover {
   background-color: #0f4a8a;
+}
+
+.button-previous-step {
+  padding: 0;
+  color: #a5a4af;
+  background-color: transparent;
+}
+.button-previous-step:hover {
+  color: #2e5880;
 }
 
 input {
@@ -81,4 +92,11 @@ input:-moz-placeholder {
   font-size: 16px;
   font-weight: 400;
   margin-top: 12px;
+}
+
+.base-form-step-content-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 40px;
 }
