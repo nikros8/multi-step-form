@@ -7,8 +7,6 @@ import { baseFormStepComponents, baseFormStepData } from "@/store/store"
     <div class="container">
       <SidebarSteps />
       <component :is="baseFormStepComponents[baseFormStepData.currentStep]" />
-      <!-- <button @click="baseFormStepData.functions.previousStep">Back</button>
-      <button @click="baseFormStepData.functions.nextStep">Next</button> -->
     </div>
   </main>
 </template>

@@ -12,6 +12,8 @@ button {
   cursor: pointer;
   width: 122px;
   height: 48px;
+  font-size: 15px;
+  letter-spacing: 0.8px;
   border: none;
   border-radius: 10px;
   color: white;
@@ -62,9 +64,12 @@ input:-moz-placeholder {
 }
 
 .base-form-step-container {
+  display: flex;
+  flex-direction: column;
   max-width: 450px;
   width: 100%;
   margin-top: 40px;
+  margin-bottom: 16px;
 }
 .base-form-step-container .title {
   color: #1e345e;

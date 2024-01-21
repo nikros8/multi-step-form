@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { baseFormStepData } from "@/store/store"
+</script>
 
 <template>
   <div class="base-form-step-container">
@@ -17,7 +19,7 @@
         <label for="tel">Phone Number</label><br />
         <input type="tel" id="tel" placeholder="e.g. +1 234 567 890" />
       </div>
-      <button>Next Step</button>
+      <button @click="baseFormStepData.functions.nextStep">Next Step</button>
     </div>
   </div>
 </template>
@@ -25,11 +27,13 @@
 <style scoped>
 .base-form-step-container .inputs {
   display: flex;
+  flex: 1;
   flex-direction: column;
   margin-top: 17px;
 }
 .base-form-step-container .inputs button {
   margin-left: auto;
+  margin-top: auto;
 }
 .base-form-step-container .inputs .input-container {
   margin-top: 22px;
