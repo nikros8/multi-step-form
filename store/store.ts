@@ -1,5 +1,9 @@
 import { BaseFormStep1, BaseFormStep2, BaseFormStep3, BaseFormStep4 } from "#components"
 
+import iconArcade from "@/assets/images/icon-arcade.svg"
+import iconAdvanced from "@/assets/images/icon-advanced.svg"
+import iconPro from "@/assets/images/icon-pro.svg"
+
 export const baseFormStepComponents: {
   [key: number]:
     | typeof BaseFormStep1
@@ -35,9 +39,27 @@ export const baseFormStepData = reactive({
   },
   step2: {
     selector: {
-      arcade: false,
-      advanced: false,
-      pro: false,
+      arcade: {
+        name: "Arcade",
+        icon: iconArcade,
+        isSelected: false,
+        priceMonthly: 9,
+        priceYearly: 108,
+      },
+      advanced: {
+        name: "Advanced",
+        icon: iconAdvanced,
+        isSelected: false,
+        priceMonthly: 12,
+        priceYearly: 144,
+      },
+      pro: {
+        name: "Pro",
+        icon: iconPro,
+        isSelected: false,
+        priceMonthly: 15,
+        priceYearly: 180,
+      },
     },
     switch: {
       isYearly: false,

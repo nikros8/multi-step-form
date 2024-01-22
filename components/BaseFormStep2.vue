@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { baseFormStepData } from "@/store/store"
-import iconArcade from "@/assets/images/icon-arcade.svg"
-import iconAdvanced from "@/assets/images/icon-advanced.svg"
-import iconPro from "@/assets/images/icon-pro.svg"
 </script>
 
 <template>
@@ -11,20 +8,16 @@ import iconPro from "@/assets/images/icon-pro.svg"
     <div class="hint">You have the option of monthly or yearly billing.</div>
     <div class="base-form-step-content-container">
       <div class="selector-subscriptions">
-        <div class="plan">
-          <img :src="iconArcade" alt="Arcade plan" />
-          <div class="plan-name">Arcade</div>
-          <div class="plan-price">$9/mo</div>
-        </div>
-        <div class="plan">
-          <img :src="iconAdvanced" alt="Advanced plan" />
-          <div class="plan-name">Advanced</div>
-          <div class="plan-price">$12/mo</div>
-        </div>
-        <div class="plan">
-          <img :src="iconPro" alt="Pro plan" />
-          <div class="plan-name">Pro</div>
-          <div class="plan-price">$15/mo</div>
+        <div
+          v-for="plan in baseFormStepData.step2.selector"
+          @click="plan.isSelected = !plan.isSelected"
+          :class="['plan', plan.isSelected ? 'active' : '']"
+        >
+          <img :src="plan.icon" :alt="plan.name" />
+          <div class="plan-name">{{ plan.name }}</div>
+          <div class="plan-price">
+            ${{ baseFormStepData.step2.switch.isYearly ? plan.priceYearly : plan.priceMonthly }}/mo
+          </div>
         </div>
       </div>
       <div class="switch-payment-schedule-wrapper">
@@ -68,6 +61,14 @@ import iconPro from "@/assets/images/icon-pro.svg"
   padding-bottom: 15px;
   padding-left: 15px;
 }
+
+.selector-subscriptions .plan:hover {
+  border: 1px solid #4f4a99;
+}
+.selector-subscriptions .plan.active {
+  background-color: #f7f7fb;
+  border-color: #4f4a99;
+}
 .selector-subscriptions .plan img {
   width: 40px;
   height: 40px;
@@ -82,9 +83,6 @@ import iconPro from "@/assets/images/icon-pro.svg"
   font-size: 14px;
   color: #a7a8ab;
   margin-top: 6px;
-}
-.selector-subscriptions .plan:hover {
-  border: 1px solid #4f4a99;
 }
 
 .switch-payment-schedule-wrapper {
