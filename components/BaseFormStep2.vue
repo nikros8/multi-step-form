@@ -31,7 +31,7 @@ import iconPro from "@/assets/images/icon-pro.svg"
         <div class="switch-payment-schedule">
           <span class="monthly">Monthly</span>
           <label class="switch">
-            <input type="checkbox" />
+            <input v-model="baseFormStepData.step2.switch.isYearly" type="checkbox" />
             <span class="slider round"></span>
           </label>
           <span class="yearly">Yearly</span>
@@ -156,11 +156,5 @@ import iconPro from "@/assets/images/icon-pro.svg"
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-}
-
-.navigation-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: auto;
 }
 </style>

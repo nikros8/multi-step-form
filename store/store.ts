@@ -14,7 +14,6 @@ export const baseFormStepComponents: {
 }
 
 export const baseFormStepData = reactive({
-  inputs: {},
   lastStepNumber: ref(Object.keys(baseFormStepComponents).length),
   currentStep: ref(1),
   functions: {
@@ -27,4 +26,23 @@ export const baseFormStepData = reactive({
       baseFormStepData.currentStep > 1 ? baseFormStepData.currentStep-- : null
     },
   },
+  step1: {
+    inputs: {
+      fullName: "",
+      emailAddress: "",
+      phoneNumber: "",
+    },
+  },
+  step2: {
+    selector: {
+      arcade: false,
+      advanced: false,
+      pro: false,
+    },
+    switch: {
+      isYearly: false,
+    },
+  },
+  step3: {},
+  step4: {},
 })

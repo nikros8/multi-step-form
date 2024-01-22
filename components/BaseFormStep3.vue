@@ -1,7 +1,87 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { baseFormStepData } from "@/store/store"
+</script>
 
 <template>
-  <h1>STEP 3</h1>
+  <div class="base-form-step-container">
+    <div class="title">Pick add-ons</div>
+    <div class="hint">Add-ons help enhance your gaming experience.</div>
+    <div class="base-form-step-content-container add-ons-container">
+      <div class="add-on-item">
+        <input type="checkbox" />
+        <div class="add-on-info">
+          <div class="add-on-title">Online service</div>
+          <div class="add-on-description">Access to multiplayer games.</div>
+        </div>
+        <div class="add-on-price">+$1/mo</div>
+      </div>
+      <div class="add-on-item">
+        <input type="checkbox" />
+        <div class="add-on-info">
+          <div class="add-on-title">Larger storage</div>
+          <div class="add-on-description">Access to multiplayer games.</div>
+        </div>
+        <div class="add-on-price">+$2/mo</div>
+      </div>
+      <div class="add-on-item">
+        <input type="checkbox" />
+        <div class="add-on-info">
+          <div class="add-on-title">Online service</div>
+          <div class="add-on-description">Access to multiplayer games.</div>
+        </div>
+        <div class="add-on-price">+$2/mo</div>
+      </div>
+    </div>
+    <div class="navigation-buttons">
+      <button @click="baseFormStepData.functions.previousStep" class="button-previous-step">
+        Go Back
+      </button>
+      <button @click="baseFormStepData.functions.nextStep" class="button-next-step">
+        Next Step
+      </button>
+    </div>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.add-ons-container .add-on-item {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 23px;
+  height: 81px;
+  border: 1px solid #dcd9e0;
+  border-radius: 10px;
+}
+.add-ons-container .add-on-item:not(:first-child) {
+  margin-top: 16px;
+}
+.add-ons-container .add-on-item:hover {
+  cursor: pointer;
+  border-color: #4e4e9b;
+}
+
+.add-ons-container .add-on-item input {
+  pointer-events: none;
+}
+.add-ons-container .add-on-item .add-on-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+}
+.add-ons-container .add-on-item .add-on-info .add-on-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f3049;
+}
+.add-ons-container .add-on-item .add-on-info .add-on-description {
+  font-size: 15px;
+  font-weight: 400;
+  color: #8a8b94;
+}
+.add-ons-container .add-on-item .add-on-price {
+  margin-left: auto;
+  font-size: 15px;
+  color: #4e4e9b;
+}
+</style>

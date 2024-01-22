@@ -9,15 +9,33 @@ import { baseFormStepData } from "@/store/store"
     <div class="inputs">
       <div class="input-container">
         <label for="name">Name</label><br />
-        <input type="text" id="name" placeholder="e.g. Stephen King" />
+        <input
+          v-model="baseFormStepData.step1.inputs.fullName"
+          class="input-personal-info"
+          type="text"
+          id="name"
+          placeholder="e.g. Stephen King"
+        />
       </div>
       <div class="input-container">
         <label for="email">Email Address</label><br />
-        <input type="email" id="email" placeholder="e.g. stephenking@lorem.com" />
+        <input
+          v-model="baseFormStepData.step1.inputs.emailAddress"
+          class="input-personal-info"
+          type="email"
+          id="email"
+          placeholder="e.g. stephenking@lorem.com"
+        />
       </div>
       <div class="input-container">
         <label for="tel">Phone Number</label><br />
-        <input type="tel" id="tel" placeholder="e.g. +1 234 567 890" />
+        <input
+          v-model="baseFormStepData.step1.inputs.phoneNumber"
+          class="input-personal-info"
+          type="tel"
+          id="tel"
+          placeholder="e.g. +1 234 567 890"
+        />
       </div>
       <button @click="baseFormStepData.functions.nextStep" class="button-next-step">
         Next Step
