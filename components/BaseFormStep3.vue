@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { baseFormStepData } from "@/store/store"
+const selectAddOn = (addOn: { isChecked: boolean }) => {
+  addOn.isChecked = !addOn.isChecked
+}
 </script>
 
 <template>
@@ -7,29 +10,17 @@ import { baseFormStepData } from "@/store/store"
     <div class="title">Pick add-ons</div>
     <div class="hint">Add-ons help enhance your gaming experience.</div>
     <div class="base-form-step-content-container add-ons-container">
-      <div class="add-on-item">
-        <input type="checkbox" />
+      <div
+        v-for="addOn in baseFormStepData.step3.addOns"
+        @click="selectAddOn(addOn)"
+        :class="['add-on-item', addOn.isChecked ? 'active' : '']"
+      >
+        <input v-model="addOn.isChecked" type="checkbox" />
         <div class="add-on-info">
-          <div class="add-on-title">Online service</div>
-          <div class="add-on-description">Access to multiplayer games.</div>
+          <div class="add-on-title">{{ addOn.name }}</div>
+          <div class="add-on-description">{{ addOn.description }}</div>
         </div>
-        <div class="add-on-price">+$1/mo</div>
-      </div>
-      <div class="add-on-item">
-        <input type="checkbox" />
-        <div class="add-on-info">
-          <div class="add-on-title">Larger storage</div>
-          <div class="add-on-description">Access to multiplayer games.</div>
-        </div>
-        <div class="add-on-price">+$2/mo</div>
-      </div>
-      <div class="add-on-item">
-        <input type="checkbox" />
-        <div class="add-on-info">
-          <div class="add-on-title">Online service</div>
-          <div class="add-on-description">Access to multiplayer games.</div>
-        </div>
-        <div class="add-on-price">+$2/mo</div>
+        <div class="add-on-price">+${{ addOn.price }}/mo</div>
       </div>
     </div>
     <div class="navigation-buttons">
@@ -52,6 +43,10 @@ import { baseFormStepData } from "@/store/store"
   height: 81px;
   border: 1px solid #dcd9e0;
   border-radius: 10px;
+}
+.add-ons-container .add-on-item.active {
+  background-color: #f7f7fb;
+  border-color: #4e4e9b;
 }
 .add-ons-container .add-on-item:not(:first-child) {
   margin-top: 16px;

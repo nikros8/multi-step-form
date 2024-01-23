@@ -1,5 +1,17 @@
 <script setup lang="ts">
 import { baseFormStepData } from "@/store/store"
+import { type StepSubscription } from "@/store/store"
+
+const selectPlan = (selectedPlan: StepSubscription) => {
+  for (const planKey in baseFormStepData.step2.subscriptions) {
+    const plan = baseFormStepData.step2.subscriptions[planKey]
+    if (plan === selectedPlan) {
+      selectedPlan.isSelected = true
+    } else {
+      plan.isSelected = false
+    }
+  }
+}
 </script>
 
 <template>
@@ -9,8 +21,8 @@ import { baseFormStepData } from "@/store/store"
     <div class="base-form-step-content-container">
       <div class="selector-subscriptions">
         <div
-          v-for="plan in baseFormStepData.step2.selector"
-          @click="plan.isSelected = !plan.isSelected"
+          v-for="plan in baseFormStepData.step2.subscriptions"
+          @click="selectPlan(plan)"
           :class="['plan', plan.isSelected ? 'active' : '']"
         >
           <img :src="plan.icon" :alt="plan.name" />
