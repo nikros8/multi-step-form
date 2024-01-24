@@ -20,7 +20,13 @@ const selectAddOn = (addOn: { isChecked: boolean }) => {
           <div class="add-on-title">{{ addOn.name }}</div>
           <div class="add-on-description">{{ addOn.description }}</div>
         </div>
-        <div class="add-on-price">+${{ addOn.price }}/mo</div>
+        <div class="add-on-price">
+          +${{
+            baseFormStepData.switch.isYearly
+              ? addOn.priceYearly + "/yr"
+              : addOn.priceMonthly + "/mo"
+          }}
+        </div>
       </div>
     </div>
     <div class="navigation-buttons">

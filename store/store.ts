@@ -15,19 +15,26 @@ export interface StepSubscription {
 interface StepSwitch {
   isYearly: boolean
 }
+interface StepAddOn {
+  name: string
+  description: string
+  priceMonthly: number
+  priceYearly: number
+  isChecked: boolean
+}
+
+interface Step1 {
+  inputs: {
+    fullName: string
+    emailAddress: string
+    phoneNumber: string
+  }
+}
 
 interface Step2 {
   subscriptions: {
     [key: string]: StepSubscription // Add index signature
   }
-  switch: StepSwitch
-}
-
-interface StepAddOn {
-  name: string
-  description: string
-  price: number
-  isChecked: boolean
 }
 
 interface Step3 {
@@ -35,24 +42,28 @@ interface Step3 {
     [key: string]: StepAddOn // Add index signature
   }
 }
+interface Step4 {
+  summary: {
+    selectedSubscription: StepSubscription | null
+    selectedAddOns: {
+      [key: string]: StepAddOn | null
+    }
+  }
+}
 
 interface BaseFormStepData {
   lastStepNumber: Ref<number>
   currentStep: Ref<number>
+  switch: StepSwitch
   functions: {
     nextStep: () => void
     previousStep: () => void
   }
-  step1: {
-    inputs: {
-      fullName: string
-      emailAddress: string
-      phoneNumber: string
-    }
-  }
+
+  step1: Step1
   step2: Step2
   step3: Step3
-  step4: {}
+  step4: Step4
 }
 
 export const baseFormStepComponents: {
@@ -71,6 +82,9 @@ export const baseFormStepComponents: {
 export const baseFormStepData = reactive<BaseFormStepData>({
   lastStepNumber: ref(Object.keys(baseFormStepComponents).length),
   currentStep: ref(1),
+  switch: {
+    isYearly: false,
+  },
   functions: {
     nextStep() {
       baseFormStepData.currentStep < baseFormStepData.lastStepNumber
@@ -112,31 +126,36 @@ export const baseFormStepData = reactive<BaseFormStepData>({
         priceYearly: 180,
       },
     },
-    switch: {
-      isYearly: false,
-    },
   },
   step3: {
     addOns: {
       onlineService: {
         name: "Online service",
         description: "Access to multiplayer games.",
-        price: 1,
+        priceMonthly: 1,
+        priceYearly: 12,
         isChecked: false,
       },
       largerStorage: {
         name: "Larger storage",
         description: "Extra 1TB of cloud save.",
-        price: 2,
+        priceMonthly: 2,
+        priceYearly: 24,
         isChecked: false,
       },
       CustomizableProfile: {
         name: "Customizable Profile",
         description: "Custom theme on your profile.",
-        price: 2,
+        priceMonthly: 2,
+        priceYearly: 24,
         isChecked: false,
       },
     },
   },
-  step4: {},
+  step4: {
+    summary: {
+      selectedSubscription: null,
+      selectedAddOns: {},
+    },
+  },
 })

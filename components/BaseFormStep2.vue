@@ -2,15 +2,24 @@
 import { baseFormStepData } from "@/store/store"
 import { type StepSubscription } from "@/store/store"
 
-const selectPlan = (selectedPlan: StepSubscription) => {
+const handleSelectPlan = (target: StepSubscription) => {
   for (const planKey in baseFormStepData.step2.subscriptions) {
     const plan = baseFormStepData.step2.subscriptions[planKey]
-    if (plan === selectedPlan) {
-      selectedPlan.isSelected = true
+    if (plan === target) {
+      plan.isSelected = true
+      baseFormStepData.step4.summary.selectedSubscription = plan
     } else {
       plan.isSelected = false
     }
   }
+}
+
+const isSubscriptionSelected = (): boolean => {
+  return baseFormStepData.step4.summary.selectedSubscription ? true : false
+}
+
+const handleNextButton = () => {
+  isSubscriptionSelected() ? baseFormStepData.functions.nextStep() : null
 }
 </script>
 
@@ -22,13 +31,17 @@ const selectPlan = (selectedPlan: StepSubscription) => {
       <div class="selector-subscriptions">
         <div
           v-for="plan in baseFormStepData.step2.subscriptions"
-          @click="selectPlan(plan)"
+          @click="handleSelectPlan(plan)"
           :class="['plan', plan.isSelected ? 'active' : '']"
         >
           <img :src="plan.icon" :alt="plan.name" />
           <div class="plan-name">{{ plan.name }}</div>
           <div class="plan-price">
-            ${{ baseFormStepData.step2.switch.isYearly ? plan.priceYearly : plan.priceMonthly }}/mo
+            ${{
+              baseFormStepData.switch.isYearly
+                ? plan.priceYearly + "/yr"
+                : plan.priceMonthly + "/mo"
+            }}
           </div>
         </div>
       </div>
@@ -36,7 +49,7 @@ const selectPlan = (selectedPlan: StepSubscription) => {
         <div class="switch-payment-schedule">
           <span class="monthly">Monthly</span>
           <label class="switch">
-            <input v-model="baseFormStepData.step2.switch.isYearly" type="checkbox" />
+            <input v-model="baseFormStepData.switch.isYearly" type="checkbox" />
             <span class="slider round"></span>
           </label>
           <span class="yearly">Yearly</span>
@@ -46,9 +59,7 @@ const selectPlan = (selectedPlan: StepSubscription) => {
         <button @click="baseFormStepData.functions.previousStep" class="button-previous-step">
           Go Back
         </button>
-        <button @click="baseFormStepData.functions.nextStep" class="button-next-step">
-          Next Step
-        </button>
+        <button @click="handleNextButton" class="button-next-step">Next Step</button>
       </div>
     </div>
   </div>
