@@ -15,7 +15,7 @@ export interface StepSubscription {
 interface StepSwitch {
   isYearly: boolean
 }
-interface StepAddOn {
+export interface StepAddOn {
   name: string
   description: string
   priceMonthly: number

@@ -1,7 +1,26 @@
 <script setup lang="ts">
-import { baseFormStepData } from "@/store/store"
-const selectAddOn = (addOn: { isChecked: boolean }) => {
-  addOn.isChecked = !addOn.isChecked
+import { baseFormStepData, type StepAddOn } from "@/store/store"
+
+const handleSelectAddOn = (target: StepAddOn) => {
+  target.isChecked = !target.isChecked
+  for (const addOnKey in baseFormStepData.step3.addOns) {
+    const addOn = baseFormStepData.step3.addOns[addOnKey]
+    if (addOn.isChecked) {
+      baseFormStepData.step4.summary.selectedAddOns[addOnKey] = addOn
+    } else {
+      if (baseFormStepData.step4.summary.selectedAddOns.hasOwnProperty(addOnKey)) {
+        delete baseFormStepData.step4.summary.selectedAddOns[addOnKey]
+      }
+    }
+  }
+}
+
+const isAddOnSelected = (): boolean => {
+  return Object.keys(baseFormStepData.step4.summary.selectedAddOns).length > 0
+}
+
+const handleNextButton = () => {
+  isAddOnSelected() ? baseFormStepData.functions.nextStep() : null
 }
 </script>
 
@@ -12,7 +31,7 @@ const selectAddOn = (addOn: { isChecked: boolean }) => {
     <div class="base-form-step-content-container add-ons-container">
       <div
         v-for="addOn in baseFormStepData.step3.addOns"
-        @click="selectAddOn(addOn)"
+        @click="handleSelectAddOn(addOn)"
         :class="['add-on-item', addOn.isChecked ? 'active' : '']"
       >
         <input v-model="addOn.isChecked" type="checkbox" />
@@ -33,9 +52,7 @@ const selectAddOn = (addOn: { isChecked: boolean }) => {
       <button @click="baseFormStepData.functions.previousStep" class="button-previous-step">
         Go Back
       </button>
-      <button @click="baseFormStepData.functions.nextStep" class="button-next-step">
-        Next Step
-      </button>
+      <button @click="handleNextButton" class="button-next-step">Next Step</button>
     </div>
   </div>
 </template>

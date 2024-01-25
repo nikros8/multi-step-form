@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { baseFormStepData } from "@/store/store"
-import { type StepSubscription } from "@/store/store"
+import { baseFormStepData, type StepSubscription } from "@/store/store"
 
 const handleSelectPlan = (target: StepSubscription) => {
   for (const planKey in baseFormStepData.step2.subscriptions) {
