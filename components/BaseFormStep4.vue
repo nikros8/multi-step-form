@@ -22,7 +22,7 @@ const calculateFinalPrice = computed(() => {
           finalPrice += addOnPrice
         }
       }
-      return finalPrice
+      return "+$" + finalPrice + "/yr"
     }
     if (!baseFormStepData.switch.isYearly) {
       finalPrice += baseFormStepData.step4.summary.selectedSubscription.priceMonthly
@@ -32,7 +32,7 @@ const calculateFinalPrice = computed(() => {
           finalPrice += addOnPrice
         }
       }
-      return finalPrice
+      return "+$" + finalPrice + "/mo"
     }
   }
 })
@@ -68,7 +68,12 @@ const calculateFinalPrice = computed(() => {
           </div>
         </div>
       </div>
-      <div>{{ calculateFinalPrice }}</div>
+      <div class="final-price-container">
+        <div class="final-price-title">
+          Total{{ baseFormStepData.switch.isYearly ? " (per year)" : " (per month)" }}
+        </div>
+        <div class="final-price-value">{{ calculateFinalPrice }}</div>
+      </div>
       <!-- <div ">
         <h1>{{ addOn?.name }}</h1>
         <p>{{ baseFormStepData.switch.isYearly ? addOn?.priceYearly : addOn?.priceMonthly }}</p>
@@ -78,7 +83,7 @@ const calculateFinalPrice = computed(() => {
       <button @click="baseFormStepData.functions.previousStep" class="button-previous-step">
         Go Back
       </button>
-      <button class="button-next-step">Confirm</button>
+      <button class="button-confirm">Confirm</button>
     </div>
   </div>
 </template>
@@ -138,6 +143,23 @@ const calculateFinalPrice = computed(() => {
   color: #a3a4ad;
 }
 .summary .addOns .addOn .addOn-price {
+  color: #2b4f7e;
+}
+.final-price-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  box-sizing: border-box;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+.final-price-container .final-price-title {
+  font-size: 14px;
+  color: #a3a4ad;
+}
+.final-price-container .final-price-value {
+  font-size: 20px;
+  font-weight: 700;
   color: #2b4f7e;
 }
 </style>

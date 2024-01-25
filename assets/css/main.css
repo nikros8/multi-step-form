@@ -21,7 +21,8 @@ button {
   height: 20px;
 }
 
-.button-next-step {
+.button-next-step,
+.button-confirm {
   width: 123px;
   height: 48px;
   border-radius: 8px;
@@ -30,6 +31,11 @@ button {
 }
 .button-next-step:hover {
   background-color: #0f4a8a;
+}
+
+.button-confirm:hover {
+  background-color: #8687c0;
+  color: whitesmoke;
 }
 
 .button-previous-step {
