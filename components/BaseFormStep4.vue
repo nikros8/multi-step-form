@@ -74,16 +74,12 @@ const calculateFinalPrice = computed(() => {
         </div>
         <div class="final-price-value">{{ calculateFinalPrice }}</div>
       </div>
-      <!-- <div ">
-        <h1>{{ addOn?.name }}</h1>
-        <p>{{ baseFormStepData.switch.isYearly ? addOn?.priceYearly : addOn?.priceMonthly }}</p>
-      </div> -->
     </div>
     <div class="navigation-buttons">
       <button @click="baseFormStepData.functions.previousStep" class="button-previous-step">
         Go Back
       </button>
-      <button class="button-confirm">Confirm</button>
+      <button @click="baseFormStepData.functions.nextStep()" class="button-confirm">Confirm</button>
     </div>
   </div>
 </template>

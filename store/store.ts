@@ -1,8 +1,14 @@
-import { BaseFormStep1, BaseFormStep2, BaseFormStep3, BaseFormStep4 } from "#components"
+import {
+  BaseFormStep1,
+  BaseFormStep2,
+  BaseFormStep3,
+  BaseFormStep4,
+  BaseFormStep5,
+} from "#components"
 
-import iconArcade from "@/assets/images/icon-arcade.svg"
-import iconAdvanced from "@/assets/images/icon-advanced.svg"
-import iconPro from "@/assets/images/icon-pro.svg"
+import iconArcade from "/assets/images/icon-arcade.svg"
+import iconAdvanced from "/assets/images/icon-advanced.svg"
+import iconPro from "/assets/images/icon-pro.svg"
 
 export interface StepSubscription {
   name: string
@@ -72,11 +78,13 @@ export const baseFormStepComponents: {
     | typeof BaseFormStep2
     | typeof BaseFormStep3
     | typeof BaseFormStep4
+    | typeof BaseFormStep5
 } = {
   1: BaseFormStep1,
   2: BaseFormStep2,
   3: BaseFormStep3,
   4: BaseFormStep4,
+  5: BaseFormStep5,
 }
 
 export const baseFormStepData = reactive<BaseFormStepData>({
