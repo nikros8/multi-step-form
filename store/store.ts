@@ -29,11 +29,15 @@ export interface StepAddOn {
   isChecked: boolean
 }
 
-interface Step1 {
+export interface Input {
+  type: Inputs
+  value: string
+  error: string
+}
+
+export interface Step1 {
   inputs: {
-    fullName: string
-    emailAddress: string
-    phoneNumber: string
+    [key: string]: Input
   }
 }
 
@@ -55,6 +59,12 @@ interface Step4 {
       [key: string]: StepAddOn | null
     }
   }
+}
+
+enum Inputs {
+  fullName,
+  emailAddress,
+  phoneNumber,
 }
 
 interface BaseFormStepData {
@@ -103,11 +113,24 @@ export const baseFormStepData = reactive<BaseFormStepData>({
       baseFormStepData.currentStep > 1 ? baseFormStepData.currentStep-- : null
     },
   },
+
   step1: {
     inputs: {
-      fullName: "",
-      emailAddress: "",
-      phoneNumber: "",
+      fullName: {
+        type: Inputs.fullName,
+        value: "",
+        error: "",
+      },
+      emailAddress: {
+        type: Inputs.emailAddress,
+        value: "",
+        error: "",
+      },
+      phoneNumber: {
+        type: Inputs.phoneNumber,
+        value: "",
+        error: "",
+      },
     },
   },
   step2: {
