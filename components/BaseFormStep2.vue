@@ -1,24 +1,34 @@
 <script setup lang="ts">
-import { baseFormStepData, type StepSubscription } from "@/store/store"
+import { baseFormStepData, type Plan } from "@/store/store"
 
-const handleSelectPlan = (target: StepSubscription) => {
-  for (const planKey in baseFormStepData.step2.subscriptions) {
-    const plan = baseFormStepData.step2.subscriptions[planKey]
+const handleSelectPlan = (target: Plan) => {
+  for (const planKey in baseFormStepData.step2.plans) {
+    const plan = baseFormStepData.step2.plans[planKey]
     if (plan === target) {
       plan.isSelected = true
-      baseFormStepData.step4.summary.selectedSubscription = plan
+      baseFormStepData.step4.summary.selectedPlan = plan
     } else {
       plan.isSelected = false
     }
   }
 }
 
-const isSubscriptionSelected = (): boolean => {
-  return baseFormStepData.step4.summary.selectedSubscription ? true : false
+const isPlanSelected = (): boolean => {
+  if (baseFormStepData.step4.summary.selectedPlan) {
+    baseFormStepData.step2.error = ""
+    return true
+  } else {
+    baseFormStepData.step2.error = "Please select a plan."
+    return false
+  }
 }
 
-const handleNextButton = () => {
-  isSubscriptionSelected() ? baseFormStepData.functions.nextStep() : null
+const handleStep = (): boolean => {
+  return isPlanSelected() ? true : false
+}
+
+const nextStep = () => {
+  handleStep() ? baseFormStepData.functions.nextStep() : null
 }
 </script>
 
@@ -27,9 +37,9 @@ const handleNextButton = () => {
     <div class="title">Select your plan</div>
     <div class="hint">You have the option of monthly or yearly billing.</div>
     <div class="base-form-step-content-container">
-      <div class="selector-subscriptions">
+      <div class="selector-plans">
         <div
-          v-for="plan in baseFormStepData.step2.subscriptions"
+          v-for="plan in baseFormStepData.step2.plans"
           @click="handleSelectPlan(plan)"
           :class="['plan', plan.isSelected ? 'active' : '']"
         >
@@ -54,22 +64,25 @@ const handleNextButton = () => {
           <span class="yearly">Yearly</span>
         </div>
       </div>
+      <div v-if="baseFormStepData.step2.error" class="error-info">
+        {{ baseFormStepData.step2.error }}
+      </div>
       <div class="navigation-buttons">
         <button @click="baseFormStepData.functions.previousStep" class="button-previous-step">
           Go Back
         </button>
-        <button @click="handleNextButton" class="button-next-step">Next Step</button>
+        <button @click="nextStep" class="button-next-step">Next Step</button>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.selector-subscriptions {
+.selector-plans {
   display: flex;
   justify-content: space-between;
 }
-.selector-subscriptions .plan {
+.selector-plans .plan {
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -84,24 +97,24 @@ const handleNextButton = () => {
   padding-left: 15px;
 }
 
-.selector-subscriptions .plan:hover {
+.selector-plans .plan:hover {
   border: 1px solid #4f4a99;
 }
-.selector-subscriptions .plan.active {
+.selector-plans .plan.active {
   background-color: #f7f7fb;
   border-color: #4f4a99;
 }
-.selector-subscriptions .plan img {
+.selector-plans .plan img {
   width: 40px;
   height: 40px;
 }
-.selector-subscriptions .plan .plan-name {
+.selector-plans .plan .plan-name {
   font-size: 16px;
   font-weight: 500;
   color: #1c2949;
   margin-top: auto;
 }
-.selector-subscriptions .plan .plan-price {
+.selector-plans .plan .plan-price {
   font-size: 14px;
   color: #a7a8ab;
   margin-top: 6px;
@@ -176,5 +189,11 @@ const handleNextButton = () => {
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+}
+
+.error-info {
+  margin-top: 10px;
+  text-align: center;
+  color: red;
 }
 </style>

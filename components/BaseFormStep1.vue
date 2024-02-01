@@ -13,18 +13,20 @@ const isInputEmpty = (input: Input): boolean => {
 
 const handleInput = (): boolean => {
   const inputErrorsCount = ref(0)
-
   for (const inputKey in baseFormStepData.step1.inputs) {
     const input = baseFormStepData.step1.inputs[inputKey]
+    // All inputs check
+    isInputEmpty(input) ? inputErrorsCount.value++ : null
+
     switch (input.type) {
       case baseFormStepData.step1.inputs.fullName.type:
-        isInputEmpty(input) ? inputErrorsCount.value++ : null
+        //Individual input check
         break
       case baseFormStepData.step1.inputs.emailAddress.type:
-        isInputEmpty(input) ? inputErrorsCount.value++ : null
+        //Individual input check
         break
       case baseFormStepData.step1.inputs.phoneNumber.type:
-        isInputEmpty(input) ? inputErrorsCount.value++ : null
+        //Individual input check
         break
     }
   }

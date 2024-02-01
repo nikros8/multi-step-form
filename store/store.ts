@@ -10,7 +10,7 @@ import iconArcade from "/assets/images/icon-arcade.svg"
 import iconAdvanced from "/assets/images/icon-advanced.svg"
 import iconPro from "/assets/images/icon-pro.svg"
 
-export interface StepSubscription {
+export interface Plan {
   name: string
   icon: string
   isSelected: boolean
@@ -42,8 +42,9 @@ export interface Step1 {
 }
 
 interface Step2 {
-  subscriptions: {
-    [key: string]: StepSubscription // Add index signature
+  error: string
+  plans: {
+    [key: string]: Plan // Add index signature
   }
 }
 
@@ -54,7 +55,7 @@ interface Step3 {
 }
 interface Step4 {
   summary: {
-    selectedSubscription: StepSubscription | null
+    selectedPlan: Plan | null
     selectedAddOns: {
       [key: string]: StepAddOn | null
     }
@@ -134,7 +135,8 @@ export const baseFormStepData = reactive<BaseFormStepData>({
     },
   },
   step2: {
-    subscriptions: {
+    error: "",
+    plans: {
       arcade: {
         name: "Arcade",
         icon: iconArcade,
@@ -185,7 +187,7 @@ export const baseFormStepData = reactive<BaseFormStepData>({
   },
   step4: {
     summary: {
-      selectedSubscription: null,
+      selectedPlan: null,
       selectedAddOns: {},
     },
   },

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { baseFormStepData } from "@/store/store"
 
-const subscriptionPrice = computed(() => {
+const planPrice = computed(() => {
   return baseFormStepData.switch.isYearly
-    ? "$" + baseFormStepData.step4.summary.selectedSubscription?.priceYearly + "/yr"
-    : "$" + baseFormStepData.step4.summary.selectedSubscription?.priceMonthly + "/mo"
+    ? "$" + baseFormStepData.step4.summary.selectedPlan?.priceYearly + "/yr"
+    : "$" + baseFormStepData.step4.summary.selectedPlan?.priceMonthly + "/mo"
 })
 
 const isYearly = computed(() => {
@@ -13,9 +13,9 @@ const isYearly = computed(() => {
 
 const calculateFinalPrice = computed(() => {
   let finalPrice = 0
-  if (baseFormStepData.step4.summary.selectedSubscription) {
+  if (baseFormStepData.step4.summary.selectedPlan) {
     if (baseFormStepData.switch.isYearly) {
-      finalPrice += baseFormStepData.step4.summary.selectedSubscription.priceYearly
+      finalPrice += baseFormStepData.step4.summary.selectedPlan.priceYearly
       for (const addOnKey in baseFormStepData.step4.summary.selectedAddOns) {
         const addOnPrice = baseFormStepData.step4.summary.selectedAddOns[addOnKey]?.priceYearly
         if (addOnPrice) {
@@ -25,7 +25,7 @@ const calculateFinalPrice = computed(() => {
       return "+$" + finalPrice + "/yr"
     }
     if (!baseFormStepData.switch.isYearly) {
-      finalPrice += baseFormStepData.step4.summary.selectedSubscription.priceMonthly
+      finalPrice += baseFormStepData.step4.summary.selectedPlan.priceMonthly
       for (const addOnKey in baseFormStepData.step4.summary.selectedAddOns) {
         const addOnPrice = baseFormStepData.step4.summary.selectedAddOns[addOnKey]?.priceMonthly
         if (addOnPrice) {
@@ -44,15 +44,13 @@ const calculateFinalPrice = computed(() => {
     <div class="hint">Double-check everything looks OK before confirming.</div>
     <div class="base-form-step-content-container">
       <div class="summary">
-        <div class="subscription">
-          <div class="subscription-name">
-            {{ baseFormStepData.step4.summary.selectedSubscription?.name + isYearly }}
-            <div class="subscription-change-button" @click="baseFormStepData.currentStep = 2">
-              Change
-            </div>
+        <div class="plan">
+          <div class="plan-name">
+            {{ baseFormStepData.step4.summary.selectedPlan?.name + isYearly }}
+            <div class="plan-change-button" @click="baseFormStepData.currentStep = 2">Change</div>
           </div>
-          <div class="subscription-price">
-            {{ subscriptionPrice }}
+          <div class="plan-price">
+            {{ planPrice }}
           </div>
         </div>
         <div class="addOns">
@@ -93,31 +91,31 @@ const calculateFinalPrice = computed(() => {
   background-color: #f7f7fb;
   border-radius: 6px;
 }
-.summary .subscription {
+.summary .plan {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 86px;
   border-bottom: 1px solid #e6e7ed;
 }
-.summary .subscription .subscription-name {
+.summary .plan .plan-name {
   display: flex;
   flex-direction: column;
   color: #2b4f7e;
   font-size: 15px;
   font-weight: 500;
 }
-.summary .subscription .subscription-name .subscription-change-button {
+.summary .plan .plan-name .plan-change-button {
   cursor: pointer;
   text-decoration: underline;
   margin-top: 8px;
   color: #939393;
   font-size: 14px;
 }
-.summary .subscription .subscription-name .subscription-change-button:hover {
+.summary .plan .plan-name .plan-change-button:hover {
   color: #4f519e;
 }
-.summary .subscription .subscription-price {
+.summary .plan .plan-price {
   color: #2b4f7e;
   font-weight: 500;
 }
