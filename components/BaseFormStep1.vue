@@ -52,7 +52,7 @@ const nextStep = () => {
           id="name"
           placeholder="e.g. Stephen King"
         />
-        <div v-if="baseFormStepData.step1.inputs.fullName.error" class="input-error">
+        <div v-if="baseFormStepData.step1.inputs.fullName.error" class="error-info">
           {{ baseFormStepData.step1.inputs.fullName.error }}
         </div>
       </div>
@@ -65,7 +65,7 @@ const nextStep = () => {
           id="email"
           placeholder="e.g. stephenking@lorem.com"
         />
-        <div v-if="baseFormStepData.step1.inputs.emailAddress.error" class="input-error">
+        <div v-if="baseFormStepData.step1.inputs.emailAddress.error" class="error-info">
           {{ baseFormStepData.step1.inputs.emailAddress.error }}
         </div>
       </div>
@@ -78,7 +78,7 @@ const nextStep = () => {
           id="tel"
           placeholder="e.g. +1 234 567 890"
         />
-        <div v-if="baseFormStepData.step1.inputs.phoneNumber.error" class="input-error">
+        <div v-if="baseFormStepData.step1.inputs.phoneNumber.error" class="error-info">
           {{ baseFormStepData.step1.inputs.phoneNumber.error }}
         </div>
       </div>
@@ -108,7 +108,7 @@ const nextStep = () => {
   font-size: 14px;
   margin-bottom: 8px;
 }
-.base-form-step-container .inputs .input-container .input-error {
+.base-form-step-container .inputs .input-container .error-info {
   position: absolute;
   color: red;
 }

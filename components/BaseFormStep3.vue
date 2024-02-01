@@ -15,12 +15,8 @@ const handleSelectAddOn = (target: StepAddOn) => {
   }
 }
 
-const isAddOnSelected = (): boolean => {
-  return Object.keys(baseFormStepData.step4.summary.selectedAddOns).length > 0
-}
-
-const handleNextButton = () => {
-  isAddOnSelected() ? baseFormStepData.functions.nextStep() : null
+const nextStep = () => {
+  baseFormStepData.functions.nextStep()
 }
 </script>
 
@@ -52,7 +48,7 @@ const handleNextButton = () => {
       <button @click="baseFormStepData.functions.previousStep" class="button-previous-step">
         Go Back
       </button>
-      <button @click="handleNextButton" class="button-next-step">Next Step</button>
+      <button @click="nextStep" class="button-next-step">Next Step</button>
     </div>
   </div>
 </template>
