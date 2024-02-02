@@ -82,21 +82,26 @@ const nextStep = () => {
           {{ baseFormStepData.step1.inputs.phoneNumber.error }}
         </div>
       </div>
-      <button @click="nextStep()" class="button-next-step">Next Step</button>
+      <div class="next-step-button-wrapper">
+        <button @click="nextStep()" class="button-next-step">Next Step</button>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.base-form-step-container .inputs {
+.inputs {
   display: flex;
   flex: 1;
   flex-direction: column;
   margin-top: 17px;
 }
-.base-form-step-container .inputs button {
-  margin-left: auto;
+.inputs .next-step-button-wrapper {
+  display: flex;
   margin-top: auto;
+}
+.inputs .next-step-button-wrapper .button-next-step {
+  margin-left: auto;
 }
 .base-form-step-container .inputs .input-container {
   margin-top: 22px;
@@ -111,5 +116,22 @@ const nextStep = () => {
 .base-form-step-container .inputs .input-container .error-info {
   position: absolute;
   color: red;
+}
+
+@media (max-width: 600px) {
+  .inputs {
+    margin-top: 5px;
+  }
+  .base-form-step-container .inputs .next-step-button-wrapper {
+    position: fixed;
+    align-items: center;
+    width: 100%;
+    height: 72px;
+    bottom: 0;
+    left: 0;
+    padding: 0 16px 0 0;
+    box-sizing: border-box;
+    background-color: #fff;
+  }
 }
 </style>

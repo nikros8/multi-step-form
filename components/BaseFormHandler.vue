@@ -42,10 +42,12 @@ main .container .current-step-info {
 @media (max-width: 600px) {
   main {
     align-items: unset;
-    padding: 0 16px;
+    min-height: unset;
+    padding: 0 16px 90px;
   }
   main .container {
     flex-direction: column;
+    height: auto;
     padding: 0 24px;
     margin-top: 98px;
   }

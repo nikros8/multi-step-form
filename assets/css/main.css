@@ -119,3 +119,9 @@ button {
   justify-content: space-between;
   margin-top: auto;
 }
+
+@media (max-width: 600px) {
+  .base-form-step-container {
+    margin-bottom: 32px;
+  }
+}
