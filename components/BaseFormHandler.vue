@@ -38,4 +38,16 @@ main .container .current-step-info {
   border-radius: 12px;
   background: url(/assets/images/bg-sidebar-desktop.svg);
 }
+
+@media (max-width: 600px) {
+  main {
+    align-items: unset;
+    padding: 0 16px;
+  }
+  main .container {
+    flex-direction: column;
+    padding: 0 24px;
+    margin-top: 98px;
+  }
+}
 </style>

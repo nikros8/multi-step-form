@@ -102,4 +102,27 @@ const currentStep = computed(() => {
   letter-spacing: 1.4px;
   margin-top: 3px;
 }
+
+@media (max-width: 600px) {
+  .sidebar {
+    z-index: -1;
+    position: absolute;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: unset;
+    height: 172px;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    background: url(/assets/images/bg-sidebar-mobile.svg) center/cover;
+  }
+  .sidebar .steps-container {
+    display: flex;
+    gap: 16px;
+    margin: 0;
+  }
+  .sidebar .steps-container .step .wrapper {
+    display: none;
+  }
+}
 </style>
