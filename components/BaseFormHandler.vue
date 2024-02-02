@@ -38,8 +38,13 @@ main .container .current-step-info {
   border-radius: 12px;
   background: url(/assets/images/bg-sidebar-desktop.svg);
 }
+@media (max-width: 900px) {
+  main .container {
+    padding-right: 30px;
+  }
+}
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   main {
     align-items: unset;
     min-height: unset;
@@ -47,6 +52,7 @@ main .container .current-step-info {
   }
   main .container {
     flex-direction: column;
+    align-items: center;
     height: auto;
     padding: 0 24px;
     margin-top: 98px;

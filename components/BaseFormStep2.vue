@@ -203,7 +203,7 @@ const nextStep = () => {
   color: red;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .selector-plans {
     flex-direction: column;
   }

@@ -99,7 +99,7 @@ const nextStep = () => {
   color: #4e4e9b;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .add-ons-container .add-on-item {
     padding: 0 15px;
   }

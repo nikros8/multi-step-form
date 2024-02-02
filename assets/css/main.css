@@ -94,6 +94,7 @@ button {
   width: 100%;
   margin-top: 40px;
   margin-bottom: 16px;
+  margin-left: 30px;
 }
 .base-form-step-container .title {
   color: #1e345e;
@@ -120,10 +121,11 @@ button {
   margin-top: auto;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .base-form-step-container {
     margin-top: 25px;
     margin-bottom: 32px;
+    margin-left: unset;
   }
   .base-form-step-container .title {
     font-size: 25px;

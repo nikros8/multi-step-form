@@ -45,7 +45,7 @@ import iconSuccess from "/assets/images/icon-thank-you.svg"
   line-height: 1.5;
   margin-top: 16px;
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .base-form-step-success {
     height: 400px;
   }

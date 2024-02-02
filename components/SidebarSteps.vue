@@ -103,7 +103,7 @@ const currentStep = computed(() => {
   margin-top: 3px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .sidebar {
     z-index: -1;
     position: absolute;
