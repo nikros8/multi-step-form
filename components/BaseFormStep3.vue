@@ -98,4 +98,20 @@ const nextStep = () => {
   font-size: 15px;
   color: #4e4e9b;
 }
+
+@media (max-width: 600px) {
+  .add-ons-container .add-on-item {
+    padding: 0 15px;
+  }
+  .add-ons-container .add-on-item .add-on-info {
+    margin-left: 15px;
+  }
+  .add-ons-container .add-on-item .add-on-info .add-on-title {
+    font-size: 15px;
+  }
+  .add-ons-container .add-on-item .add-on-info .add-on-description {
+    margin-top: 5px;
+    font-size: 12px;
+  }
+}
 </style>
