@@ -44,7 +44,7 @@ const nextStep = () => {
         </div>
       </div>
     </div>
-    <div class="navigation-buttons">
+    <div class="step-navigation-wrapper">
       <button @click="baseFormStepData.functions.previousStep" class="button-previous-step">
         Go Back
       </button>

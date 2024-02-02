@@ -114,7 +114,7 @@ button {
   margin-top: 40px;
 }
 
-.navigation-buttons {
+.step-navigation-wrapper {
   display: flex;
   justify-content: space-between;
   margin-top: auto;
@@ -122,6 +122,21 @@ button {
 
 @media (max-width: 600px) {
   .base-form-step-container {
+    margin-top: 25px;
     margin-bottom: 32px;
+  }
+  .base-form-step-container .title {
+    font-size: 25px;
+  }
+  .step-navigation-wrapper {
+    position: fixed;
+    align-items: center;
+    width: 100%;
+    height: 72px;
+    bottom: 0;
+    left: 0;
+    padding: 0 16px;
+    box-sizing: border-box;
+    background-color: #fff;
   }
 }

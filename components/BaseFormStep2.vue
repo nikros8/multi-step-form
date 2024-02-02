@@ -44,13 +44,15 @@ const nextStep = () => {
           :class="['plan', plan.isSelected ? 'active' : '']"
         >
           <img :src="plan.icon" :alt="plan.name" />
-          <div class="plan-name">{{ plan.name }}</div>
-          <div class="plan-price">
-            ${{
-              baseFormStepData.switch.isYearly
-                ? plan.priceYearly + "/yr"
-                : plan.priceMonthly + "/mo"
-            }}
+          <div class="plan-info">
+            <div class="plan-name">{{ plan.name }}</div>
+            <div class="plan-price">
+              ${{
+                baseFormStepData.switch.isYearly
+                  ? plan.priceYearly + "/yr"
+                  : plan.priceMonthly + "/mo"
+              }}
+            </div>
           </div>
         </div>
       </div>
@@ -67,7 +69,7 @@ const nextStep = () => {
       <div v-if="baseFormStepData.step2.error" class="error-info">
         {{ baseFormStepData.step2.error }}
       </div>
-      <div class="navigation-buttons">
+      <div class="step-navigation-wrapper">
         <button @click="baseFormStepData.functions.previousStep" class="button-previous-step">
           Go Back
         </button>
@@ -85,6 +87,7 @@ const nextStep = () => {
 .selector-plans .plan {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   cursor: pointer;
   width: 138px;
   height: 160px;
@@ -108,11 +111,14 @@ const nextStep = () => {
   width: 40px;
   height: 40px;
 }
+.selector-plans .plan .plan-info {
+  display: flex;
+  flex-direction: column;
+}
 .selector-plans .plan .plan-name {
   font-size: 16px;
   font-weight: 500;
   color: #1c2949;
-  margin-top: auto;
 }
 .selector-plans .plan .plan-price {
   font-size: 14px;
@@ -195,5 +201,26 @@ const nextStep = () => {
   margin-top: 10px;
   text-align: center;
   color: red;
+}
+
+@media (max-width: 600px) {
+  .selector-plans {
+    flex-direction: column;
+  }
+
+  .selector-plans .plan {
+    flex-direction: row;
+    justify-content: unset;
+    gap: 12px;
+    width: 100%;
+    height: 76px;
+    padding-top: 19px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+  }
+  .selector-plans .plan:not(:first-child) {
+    margin-top: 12px;
+  }
 }
 </style>
